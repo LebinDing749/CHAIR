@@ -54,10 +54,10 @@ This dataset is intended for use in various fields, including computer vision, 3
 
 # Demonstration
 
-Ctrl + Click to broadcast video
+![](images/single.gif)
 
-[<img src="images/scene.png" style="zoom:55.5%;" />](./images/scene.mkv)
+![](images/scene.gif)
 
 
 
-[![image-20230921104700185](images/single.png)](images/single.mkv)
+# Method of convert AMC to SMPL
