@@ -47,3 +47,17 @@ This dataset is intended for use in various fields, including computer vision, 3
 
 1. **Output Formats:** The dataset provides motion data in various formats, including C3D, ASF/AMC, BVH, SMPL-X , information regarding object motion, and demonstration videos.
 2. **Data Volume:** The dataset comprises data from six models, featuring approximately 280 motion sequences. There are interactions with 32 different objects, with around 20 objects exhibiting motion during the interactions. Each motion sequence consists of six consecutive actions. The duration of each motion sequence ranges from 30 to 45 seconds, with a frame rate of 60 frames per second (FPS). The total duration of the dataset is approximately 2.8 hours.
+
+
+
+
+
+# Demonstration
+
+Ctrl + Click to broadcast video
+
+[<img src="images/scene.png" style="zoom:55.5%;" />](./images/scene.mkv)
+
+
+
+[![image-20230921104700185](images/single.png)](images/single.mkv)
