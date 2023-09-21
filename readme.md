@@ -60,4 +60,29 @@ This dataset is intended for use in various fields, including computer vision, 3
 
 
 
-# Method of convert AMC to SMPL
+# Method of converting AMC to SMPL
+
+#### 1. convert the .asf/.amc to .bvh
+
+We recommend using [amc2bvh](https://github.com/sxaxmz/amc2bvh), which is open-source and free. Although amc2bvh does not consider scaling, we can set the global scale when importing .bvh into Blender.
+
+In addition, we modified the first frame of the .amc file to match the T-pose (initial body_pose) of smpl-x.
+
+#### 2.retarget the motion of .bvh to smpl-x model in blender
+
+To create a SMPL-X model in blender, we recommend the [SMPL-Blender-Addon](https://github.com/Meshcapade/SMPL_blender_addon). If you understand the source code of the SMPL-Blender-Addon, you can manually set the model's ***betas*** parameters, not just height and weight.
+
+The root bone of the model created with the SMPL-X Blender add-on named '***root*'**,  which can be used in Blender to represent global displacement. 
+
+However, it is not necessary for describing the pose of the SMPL-X model. In fact, the bone hierarchy with ***'pelvis'*** as the root bone is more similar to the structure of ASF skeletons, which is crucial for the retargeting. So, we removed the ***'root'*** bone of the model, making 'pelvis' the root bone instead.
+
+Then, we used the [Rokoko Studio live for Blender](https://support.rokoko.com/hc/en-us/articles/4410463492241-Install-the-Blender-plugin) for retargeting. The [bone_mapping](scirpt\bone_mapping.json) is provided.
+
+#### 3.export  and calculate SMPL-X parameters
+
+The ***betas*** and ***body_pose*** per frame can be directly exported, and parts of the SMPL Blender add-on code can be used directly in Blender Python scripts. Additionally, after obtaining ***betas***, ***body_pose***, ***joint_position*** and ***mesh_vertices***, you can calculate ***transl*** and ***global_orient***.
+
+All the script of data processing are located in the './script'.
+
+
+
