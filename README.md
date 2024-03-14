@@ -15,13 +15,13 @@ The file structure of our dataset is as follows:
     |	|	|	|	body_pose.npy
     |	|	|	|	betas.npy
     |	|	|	|	...
+    |	|	|	|
     |	|	|	├──C3D
     |	|	|	obj_id.npy
     |	|	|	obj_transl.npy
    	|	|	|	obj_orient.npy
     |	|	|	...
-    |	|	├──...
-    |   ├── ...
+    |	|	|
     |	├── lable
     |
     ├── source_files
@@ -33,6 +33,7 @@ The file structure of our dataset is as follows:
     ├── videos
     |   ├── video of a model
     |   ├── ...
+    |
 ```
 
 
@@ -71,19 +72,19 @@ In addition, we modified the first frame of the .amc file to match the T-pose (i
 
 #### 2.Retarget the motion of .bvh to smpl-x model in blender
 
-To create a SMPL-X model in blender, we recommend the [SMPL-Blender-Addon](https://github.com/Meshcapade/SMPL_blender_addon). Addon, you can manually set the model's ***betas*** parameters, height and weight. see the [Tutorial](https://www.youtube.com/watch?v=DY2k29Jef94).
+To create a *SMPL-X* model in blender, we recommend the [SMPL-Blender-Addon](https://github.com/Meshcapade/SMPL_blender_addon). Addon, you can manually set the model's ***betas*** parameters, height and weight. see the [Tutorial](https://www.youtube.com/watch?v=DY2k29Jef94).
 
-The root bone of the model created with the SMPL-X Blender add-on named '***root*'**,  which can be used in Blender to represent global displacement. 
+The root bone of the model created with the *SMPL-X Blender Add-on* named '***root*'**,  which can be used in Blender to represent global displacement. 
 
 However, it is not necessary for describing the pose of the SMPL-X model. In fact, the bone hierarchy with ***'pelvis'*** as the root bone is more similar to the structure of ASF skeletons, which is crucial for the retargeting. So, we removed the ***'root'*** bone of the model, making 'pelvis' the root bone instead.
 
-Then, we used the [Rokoko Studio live for Blender](https://support.rokoko.com/hc/en-us/articles/4410463492241-Install-the-Blender-plugin) for retargeting. The [bone_mapping](scirpt\bone_mapping.json) is provided.
+Then, we used the [Rokoko Studio live for Blender](https://support.rokoko.com/hc/en-us/articles/4410463492241-Install-the-Blender-plugin) for retargeting. The [bone_mapping](./scripts/bone_mapping.json) is provided.
 
-#### 3.export  and calculate SMPL-X parameters
+#### 3.Export  and calculate SMPL-X parameters
 
-The ***betas*** and ***body_pose*** per frame can be directly exported, and the *SMPL_Blender_add-on* code can be used directly in Blender Python scripts. Additionally, after obtaining ***betas***, ***body_pose***, ***joint_position*** and ***mesh_vertices***, you can calculate ***transl*** and ***global_orient***.
+The ***betas*** and ***body_pose*** per frame can be directly exported, and the *SMPL_Blender_add-on* code can be used directly in Blender Python scripts. Additionally, after obtaining ***betas***, ***body_pose***, ***joint_position*** and ***mesh_vertices***, you can calculate ***global_transl*** and ***global_orient***. (The process is similar to solving a 3D rigid body transformation, if any unclear about 3D rigid body transformation, reference: https://www.researchgate.net/publication/226330949)
 
-All the scripts of data processing are located in the './script'.
+All the scripts of data processing are located in the './scripts'.
 
 
 
