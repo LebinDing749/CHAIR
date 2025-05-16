@@ -60,7 +60,9 @@ The file structure of our dataset is as follows:
 
 ![](images/scene.gif)
 
+![](images/single_0.png)
 
+![](images/multi_0.png)
 
 # Method of converting AMC to SMPL
 
